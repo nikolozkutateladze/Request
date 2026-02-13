@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yay! 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff0f6; --accent:#ff4da6}
+    html,body{height:100%;margin:0;font-family:'Nunito',sans-serif}
+    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ffd6ea,#fff0f6);overflow:hidden}
+    .card{background:white;padding:36px;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.12);text-align:center;max-width:560px;position:relative;z-index:10}
+    h1{font-family:'Fredoka One',sans-serif;color:#c93a67;margin:0 0 8px}
+    p{color:#6b3b4a;margin:0 0 16px}
+    .heart{font-size:64px}
+    .btn{padding:10px 18px;border-radius:8px;background:var(--accent);color:white;border:none;cursor:pointer;font-weight:700}
+    
+    .confetti{position:fixed;pointer-events:none;font-size:24px;animation:fall linear forwards}
+    @keyframes fall{
+      0%{opacity:1;transform:translateY(-100px) rotate(0deg)}
+      100%{opacity:0;transform:translateY(100vh) rotate(360deg)}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="heart">💖</div>
+    <h1>Yes! 💕</h1>
+    <p>I'm so happy you said yes. Happy Valentine's Day!</p>
+    <button class="btn" onclick="location.href='valentine.html'">Back</button>
+  </div>
+  
+  <script>
+    const symbols = ['💕', '💖', '💗', '💝', '🌹', '✨'];
+    
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+      confetti.style.fontSize = (20 + Math.random() * 30) + 'px';
+      
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 4500);
+    }
+    
+    // Create confetti on page load
+    window.addEventListener('load', () => {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => createConfetti(), i * 100);
+      }
+    });
+    
+    // Optional: Continue creating confetti every few seconds
+    setInterval(createConfetti, 300);
+  </script>
+</body>
+</html>
